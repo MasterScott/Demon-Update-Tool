@@ -2,8 +2,8 @@
 # This is the workflow of the updater It will call scripts based on the version of Demon Linux
 # 2019 - WeakNet Labs - Douglas Berdeaux, DemonLinux.com ^vv^
 #
-DUT_SCRIPT=$(basename "$0") # the name of this script
-DUT_SCRIPT_CHECKSUM=$(md5sum $SCRIPT|awk '{print $1}') # This will generate an md5
+DUT_SCRIPT=/usr/local/sbin/$(basename "$0") # the name of this script
+DUT_SCRIPT_CHECKSUM=$(md5sum $DUT_SCRIPT|awk '{print $1}') # This will generate an md5
 source ~/.bashrc
 DUT_CURRENT_LEVEL=$2 # current version from /etc/demon/version
 
@@ -22,7 +22,10 @@ if [[ "$1" != "$DUT_SCRIPT_CHECKSUM" ]] # ensure this file is not called alone, 
     printf "\n[ERROR]: This script should not be called directly.\n\tPlease use the \"demon-updater.sh\" command\n\n"
     exit 1337
 else
-  printf "[i] Initializing update tool ...  \n"
+  log "Initializing update tool"
+  log "Current version: $DUT_CURRENT_LEVEL"
+  DUT_NEW_LEVEL=(($DUT_CURRENT_LEVEL+1))
+  log "Upgrading to: $DUT_NEXT_LEVEL"
   # 1. get current version
   # 2. get updates
   # 3. run them

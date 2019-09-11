@@ -44,7 +44,7 @@ log "Tool up to date, proceed with updates"
 
 ### Calling updater-workflow script
 DUT_WORKFLOW_SCRIPT=/usr/local/sbin/demon-updater-workflow.sh
-DUT_WORKFLOW_SCRIPT_CHECKSUM=$(md5sum $WORKFLOW_SCRIPT|awk '{print $1}')
+DUT_WORKFLOW_SCRIPT_CHECKSUM=$(md5sum $DUT_WORKFLOW_SCRIPT|awk '{print $1}')
 log "Using CHECKSUM: $DUT_WORKFLOW_SCRIPT_CHECKSUM"
 log "Calling WORKFLOW_SCRIPT: $DUT_WORKFLOW_SCRIPT"
 $DUT_WORKFLOW_SCRIPT $DUT_WORKFLOW_SCRIPT_CHECKSUM $DUT_CURRENT_LEVEL
