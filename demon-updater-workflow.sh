@@ -39,7 +39,7 @@ else
   if [[ $DUT_CURRENT_LEVEL -lt $DUT_HIGHEST_LEVEL ]]
     then # System requires an update!
       DUT_NEXT_LEVEL=$((DUT_CURRENT_LEVEL+=1))
-      log "Demon requires update."
+      log "${DUT_RED}Demon requires update.${DUT_RST}"
       while [ $DUT_NEXT_LEVEL -le $DUT_HIGHEST_LEVEL ]
         do # run the script:
           log "Running update level: $DUT_NEXT_LEVEL"
