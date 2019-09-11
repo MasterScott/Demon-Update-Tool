@@ -3,7 +3,8 @@
 # 2019 - WeakNet Labs - Douglas Berdeaux, DemonLinux.com ^vv^
 #
 source ~/.bashrc
-DUT_SCRIPT=/usr/local/sbin/$(basename "$0") # the name of this script
+#DUT_SCRIPT=/usr/local/sbin/$(basename "$0") # the name of this script
+DUT_SCRIPT=/var/demon/updater/code/Demon-Update-Tool/demon-updater-workflow.sh
 DUT_LEVELS=/var/demon/updater/code/Demon-Update-Tool/update_scripts/
 DUT_SCRIPT_CHECKSUM=$(md5sum $DUT_SCRIPT|awk '{print $1}') # This will generate an md5
 DUT_HIGHEST_LEVEL=$(ls $DUT_LEVELS|sort -u|tail -n 1|awk -F. '{print $1}')
@@ -29,7 +30,8 @@ export -f getCurrentLevel
 
 if [[ "$1" != "$DUT_SCRIPT_CHECKSUM" ]] # ensure this file is not called alone, ity must be called with it's own checksum
   then
-    printf "\n[ERROR]: This script should not be called directly.\n\tPlease use the \"demon-updater.sh\" command\n\n"
+    printf "\n[ERROR]: This script should not be called directly.\n\tPlease use the \"demon-updater.sh\" command\n\n" 1>&2
+    printf "I got: $1, but I am $DUT_SCRIPT_CHECKSUM" 1>&2
     exit 1337
 else
   log "Initializing update tool"
@@ -37,7 +39,8 @@ else
   log "Highest level available: $DUT_HIGHEST_LEVEL"
   if [[ $(getCurrentLevel) -lt $DUT_HIGHEST_LEVEL ]]
     then # System requires an update!
-      DUT_NEXT_LEVEL=$((getCurrentLevel+=1))
+      DUT_NEXT_LEVEL=$(getCurrentLevel) # -1
+      DUT_NEXT_LEVEL=$((DUT_NEXT_LEVEL+=1)) # 0, right?
       log "${DUT_RED}Demon requires update.${DUT_RST}"
       while [ $DUT_NEXT_LEVEL -le $DUT_HIGHEST_LEVEL ]
         do # run the script:
