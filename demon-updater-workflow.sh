@@ -32,6 +32,7 @@ else
     do # run the script:
       log "Running update level: $DUT_NEXT_LEVEL"
       /var/demon/updater/code/Demon-Update-Tool/update_scripts/${DUT_NEXT_LEVEL}.sh
+      updateVersion $DUT_NEXT_LEVEL # record that we (at least tried) applied the update ...
       DUT_NEXT_LEVEL=$((DUT_NEXT_LEVEL+=1)) # postfix and run again ...
   done
 fi
