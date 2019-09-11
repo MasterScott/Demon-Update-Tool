@@ -15,8 +15,12 @@ log() { # pass to me the phrase to be logged only as a string
 updateVersion() { # pass to me the version to log the update
   echo $1 > /etc/demon/version
 }
+getCurrentLevel() {
+  return $(cat /etc/demon/version)
+}
 export -f log
 export -f updateVersion
+export -f getCurrentLevel
 
 if [[ "$1" != "$DUT_SCRIPT_CHECKSUM" ]] # ensure this file is not called alone, ity must be called with it's own checksum
   then
@@ -35,4 +39,4 @@ else
       DUT_NEXT_LEVEL=$((DUT_NEXT_LEVEL+=1)) # postfix and run again ...
   done
 fi
-log "\nSystem now at version $DUT_NEXT_LEVEL. All updates are complete.\n"
+log "\nSystem now at version $getCurrentLevel. All updates are complete.\n"
