@@ -24,7 +24,7 @@ if [[ "$1" != "$DUT_SCRIPT_CHECKSUM" ]] # ensure this file is not called alone, 
 else
   log "Initializing update tool"
   log "Current version: $DUT_CURRENT_LEVEL"
-  DUT_NEW_LEVEL=$((DUT_CURRENT_LEVEL+=1))
+  DUT_NEXT_LEVEL=$((DUT_CURRENT_LEVEL+=1))
   log "Upgrading to: $DUT_NEXT_LEVEL"
   # 1. get current version
   # 2. get updates
