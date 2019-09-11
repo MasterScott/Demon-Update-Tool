@@ -6,7 +6,6 @@ source ~/.bashrc
 DUT_SCRIPT=/usr/local/sbin/$(basename "$0") # the name of this script
 DUT_LEVELS=/var/demon/updater/code/Demon-Update-Tool/update_scripts/
 DUT_SCRIPT_CHECKSUM=$(md5sum $DUT_SCRIPT|awk '{print $1}') # This will generate an md5
-DUT_CURRENT_LEVEL=$2 # current version from /etc/demon/version
 DUT_HIGHEST_LEVEL=$(ls $DUT_LEVELS|sort -u|tail -n 1|awk -F. '{print $1}')
 DUT_GRN="\033[1;32m"
 DUT_RST="\033[0m"
@@ -34,26 +33,23 @@ if [[ "$1" != "$DUT_SCRIPT_CHECKSUM" ]] # ensure this file is not called alone, 
     exit 1337
 else
   log "Initializing update tool"
-  printf "DO NOT EXIST getCurrentLevel c: $(getCurrentLevel)\n"
-  log "Current version: $DUT_CURRENT_LEVEL"
+  log "Current version: $(getCurrentLevel)"
   log "Highest level available: $DUT_HIGHEST_LEVEL"
-  if [[ $DUT_CURRENT_LEVEL -lt $DUT_HIGHEST_LEVEL ]]
+  if [[ $(getCurrentLevel) -lt $DUT_HIGHEST_LEVEL ]]
     then # System requires an update!
-      DUT_NEXT_LEVEL=$((DUT_CURRENT_LEVEL+=1))
+      DUT_NEXT_LEVEL=$((getCurrentLevel+=1))
       log "${DUT_RED}Demon requires update.${DUT_RST}"
       while [ $DUT_NEXT_LEVEL -le $DUT_HIGHEST_LEVEL ]
         do # run the script:
           log "Running update level: $DUT_NEXT_LEVEL"
           DUT_LEVEL_MD5=$(md5sum ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh|awk '{print $1}')
           ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh $DUT_LEVEL_MD5
-          printf "DO NOT EXIST getCurrentLevel a: $(getCurrentLevel)\n"
           if [[ $? -eq 0 ]]
             then
               log "Updating /etc/demon/version file, because \$\? = $?"
               setCurrentLevel $DUT_NEXT_LEVEL # record that we (at least tried) applied the update ...
               DUT_NEXT_LEVEL=$((DUT_NEXT_LEVEL+=1)) # postfix and run again ...
           else
-            printf "getCurrentLevel b: $(getCurrentLevel)\n"
             printf "${DUT_RED} SOMETHING WENT WRONG WITH ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh ${DUT_RST}\n\n" 1>&2
             exit 57
           fi
