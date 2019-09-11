@@ -16,7 +16,8 @@ log() {
   printf "\033[1;32m[\033[1;36m$(basename "$0")\033[1;33m log\033[1;32m]\033[0m: $1 \n"
 }
 export -f log
-
+log "Updating Debian repository data"
+apt update &>/dev/null
 log "Current version $DUT_CURRENT_LEVEL"
 ### Check if Demon Linux directory structure exists:
 if [[ ! -d "/etc/demon/" ]]
