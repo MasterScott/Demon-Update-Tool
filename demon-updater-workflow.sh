@@ -47,7 +47,7 @@ else
           setCurrentLevel $DUT_NEXT_LEVEL # record that we (at least tried) applied the update ...
           DUT_NEXT_LEVEL=$((DUT_NEXT_LEVEL+=1)) # postfix and run again ...
       done
-      log "${DUT_GRN}System at version $(getCurrentLevel). All updates are complete."
+      log "${DUT_GRN}System at version $(getCurrentLevel). All updates are complete.${DUT_RST}"
   else
     log "${DUT_GRN}System is already up to date. Version $(getCurrentLevel)${DUT_RST}"
   fi # done
