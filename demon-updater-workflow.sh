@@ -45,8 +45,9 @@ else
           log "Running update level: $DUT_NEXT_LEVEL"
           DUT_LEVEL_MD5=$(md5sum ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh|awk '{print $1}')
           ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh $DUT_LEVEL_MD5
-          if [[ "$?" -eq 0 ]]
+          if [[ $? -eq 0 ]]
             then
+              log "Updating /etc/demon/version file, because \$\? = $?"
               setCurrentLevel $DUT_NEXT_LEVEL # record that we (at least tried) applied the update ...
               DUT_NEXT_LEVEL=$((DUT_NEXT_LEVEL+=1)) # postfix and run again ...
           else
