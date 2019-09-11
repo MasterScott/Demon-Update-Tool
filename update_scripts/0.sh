@@ -24,7 +24,7 @@ log "Hello. I have initialized"
 ### Place all custom update code below this line.
 # 1. fix the font in LightDM:
 log "Fixing the font issue with LightDM"
-find /usr/share/fonts -iname '*.ttf' -type f -exec sudo chmod -v 644 {} \;
-find /usr/share/fonts -iname '*.otf' -type f -exec sudo chmod -v 644 {} \;
-sudo fc-cache -r -v
+find /usr/share/fonts -iname '*.ttf' -type f -exec sudo chmod -v 644 {} \; 2>&1>/dev/null
+find /usr/share/fonts -iname '*.otf' -type f -exec sudo chmod -v 644 {} \; 2>&1>/dev/null
+sudo fc-cache -r -v 2>&1>/dev/null
 # 2. ...
