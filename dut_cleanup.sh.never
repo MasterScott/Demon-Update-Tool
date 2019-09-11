@@ -2,9 +2,7 @@
 # DO NOT RUN THIS SCRIPT
 # FOR DEBUGGING PURPOSES ONLY
 source ~/.bashrc
-printf "[LOG] basename 0: $(basename "$0")\n"
 CHECKSUM=$(md5sum $(basename "$0")|awk '{print $1}')
-printf "[LOG] CHECKSUM: $CHECKSUM\n"
 if [[ "$1" != "$CHECKSUM" ]]
   then
     printf "[ERROR]: DO NOT RUN THIS SCRIPT.\n"
