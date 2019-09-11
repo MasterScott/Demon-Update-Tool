@@ -30,7 +30,8 @@ else
   log "Upgrading to: $DUT_NEXT_LEVEL"
   while [ $DUT_NEXT_LEVEL <= $DUT_HIGHEST_LEVEL ]
     do # run the script:
+      log "Running update level: $DUT_NEXT_LEVEL"
       /var/demon/updater/code/Demon-Update-Tool/update_scripts/${DUT_NEXT_LEVEL}.sh
-      DUT_NEXT_LEVEL=$((DUT_CURRENT_LEVEL+=1)) # postfix and run again ...
+      DUT_NEXT_LEVEL=$((DUT_NEXT_LEVEL+=1)) # postfix and run again ...
   done
 fi
