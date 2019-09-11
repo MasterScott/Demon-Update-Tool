@@ -50,7 +50,7 @@ else
               setCurrentLevel $DUT_NEXT_LEVEL # record that we (at least tried) applied the update ...
               DUT_NEXT_LEVEL=$((DUT_NEXT_LEVEL+=1)) # postfix and run again ...
           else
-            printf "\n\n${DUT_RED} SOMETHING WENT WRONG WITH ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh ${DUQ_RST}\n\n" 1>&2
+            printf "\n\n${DUT_RED} SOMETHING WENT WRONG WITH ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh ${DUT_RST}\n\n" 1>&2
             exit 57
           fi
       done
