@@ -10,7 +10,7 @@ DUT_CURRENT_LEVEL=$2 # current version from /etc/demon/version
 DUT_HIGHEST_LEVEL=$(ls $DUT_LEVELS|sort -u|tail -n 1|awk -F. '{print $1}')
 
 log() { # pass to me the phrase to be logged only as a string
-  printf "\033[1;32m[\033[1;33mlog\033[1;32m]\033[0m: $1 \n"
+  printf "\033[1;32m[\033[1;33m$(basename "$0") log\033[1;32m]\033[0m: $1 \n"
 }
 updateVersion() { # pass to me the version to log the update
   echo $1 > /etc/demon/version

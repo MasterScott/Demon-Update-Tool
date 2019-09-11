@@ -13,7 +13,7 @@ DUT_CURRENT_LEVEL=$(cat /etc/demon/version||echo -1)
 printf "\033[1;31m\nDemon Linux Update Tool\n2019 WeakNet Labs, Douglas Berdeaux\n\n\033[0m"
 source ~/.bashrc
 log() {
-  printf "\033[1;32m[\033[1;33mlog\033[1;32m]\033[0m: $1 \n"
+  printf "\033[1;32m[\033[1;33m$(basename "$0") log\033[1;32m]\033[0m: $1 \n"
 }
 export -f log
 
@@ -27,16 +27,13 @@ if [[ ! -d "/etc/demon/" ]]
 fi
 if [[ ! -d "$DUT_CODE_DIR" ]]
   then
-    log "Creating $CODE_DIR local directory structure"
     mkdir -p $DUT_CODE_DIR
-    log "Cloning remote repository"
     cd $DUT_CODE_DIR
     git clone $DUT_GIT_REPO_URL
 else
   cd $DUT_REPO_DIR && git pull
 fi
 ### Update all scripts
-log "Copying binary to \$PATH"
 cp $DUT_REPO_DIR/*.sh /usr/local/sbin # clobber the old files if necessary
 chmod +x /usr/local/sbin/demon-updater-workflow.sh
 chmod +x /usr/local/sbin/demon-updater.sh
