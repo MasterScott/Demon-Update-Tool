@@ -4,10 +4,9 @@
 #  This tool is self-maintained using GitHUB repository versioning.
 #  2019 - WeakNet Labs, Douglas Berdeaux, DemonLinux.com
 #
-DUT_WORKFLOW_SCRIPT=/usr/local/sbin/demon-updater-workflow.sh
-DUT_WORKFLOW_SCRIPT_CHECKSUM=$(md5sum $WORKFLOW_SCRIPT|awk '{print $1}')
+
 DUT_CODE_DIR=/var/demon/updater/code
-DUT_REPO_DIR=$CODE_DIR/Demon-Update-Tool
+DUT_REPO_DIR=$DUT_CODE_DIR/Demon-Update-Tool
 DUT_GIT_REPO_URL=https://github.com/weaknetlabs/Demon-Update-Tool
 DUT_CURRENT_LEVEL=$(cat /etc/demon/version||echo -1)
 
@@ -36,7 +35,7 @@ if [[ ! -d "$DUT_CODE_DIR" ]]
 else
   cd $DUT_REPO_DIR && git pull
 fi
-
+### Update all scripts
 log "Copying binary to \$PATH"
 cp $DUT_REPO_DIR/*.sh /usr/local/sbin # clobber the old files if necessary
 chmod +x /usr/local/sbin/demon-updater-workflow.sh
@@ -44,6 +43,8 @@ chmod +x /usr/local/sbin/demon-updater.sh
 log "Tool up to date, proceed with updates"
 
 ### Calling updater-workflow script
+DUT_WORKFLOW_SCRIPT=/usr/local/sbin/demon-updater-workflow.sh
+DUT_WORKFLOW_SCRIPT_CHECKSUM=$(md5sum $WORKFLOW_SCRIPT|awk '{print $1}')
 log "Using CHECKSUM: $DUT_WORKFLOW_SCRIPT_CHECKSUM"
 log "Calling WORKFLOW_SCRIPT: $DUT_WORKFLOW_SCRIPT"
 $DUT_WORKFLOW_SCRIPT $DUT_WORKFLOW_SCRIPT_CHECKSUM $DUT_CURRENT_LEVEL
