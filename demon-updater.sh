@@ -9,6 +9,8 @@ WORKFLOW_SCRIPT_CHECKSUM=$(md5sum $WORKFLOW_SCRIPT|awk '{print $1}')
 CODE_DIR=/var/demon/updater/code
 REPO_DIR=$CODE_DIR/Demon-Update-Tool
 GIT_REPO_URL=https://github.com/weaknetlabs/Demon-Update-Tool
+CURRENT_LEVEL=$(cat /etc/demon/version||echo 0)
+
 printf "\033[1;31m\nDemon Linux Update Tool\n2019 WeakNet Labs, Douglas Berdeaux\n\n\033[0m"
 source ~/.bashrc
 log() {
@@ -16,6 +18,7 @@ log() {
 }
 export -f log
 
+log "Current version $CURRENT_LEVEL"
 ### Check if Demon Linux directory structure exists:
 if [[ ! -d "/etc/demon/" ]]
   then
@@ -23,7 +26,6 @@ if [[ ! -d "/etc/demon/" ]]
     mkdir -p /etc/demon
     echo 0 > /etc/demon/version # init as version 0
 fi
-
 if [[ ! -d "$CODE_DIR" ]]
   then
     log "Creating $CODE_DIR local directory structure"
@@ -36,7 +38,8 @@ else
 fi
 
 log "Copying binary to \$PATH"
-cp $REPO_DIR/*.sh /usr/local/sbin
+chmod +x $REPO_DIR/*.sh # change permissions for execute
+cp $REPO_DIR/*.sh /usr/local/sbin # clobber the old files if necessary
 log "Tool up to date, proceed with updates"
 
 ### Calling updater-workflow script
