@@ -20,7 +20,7 @@ log() {
   printf "${DUT_GRN}[${DUT_CYN}$(basename "$0")${DUT_YLW} log${DUT_GRN}]${DUT_RST}: $1 \n"
 }
 export -f log
-log "Hello, I have initialized"
+log "Hello. I have initialized"
 ### Place all custom update code below this line.
 # 1. fix the font in LightDM:
 log "Fixing the font issue with LightDM"

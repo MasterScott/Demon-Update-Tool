@@ -21,7 +21,7 @@ setCurrentLevel() { # pass to me the version to log the update
   log "Updating $(getCurrentLevel) to level $1 in /etc/demon/version"
   echo $1 > /etc/demon/version
 }
-cat /etc/demon/version
+
 getCurrentLevel() {
   echo $(cat /etc/demon/version)
 }
