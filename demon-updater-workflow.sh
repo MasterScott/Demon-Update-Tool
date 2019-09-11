@@ -12,7 +12,7 @@ DUT_GRN="\033[1;32m"
 DUT_RST="\033[0m"
 DUT_CYN="\033[1;36m"
 DUT_YLW="\033[1;33m"
-DUT_RED="\033[1;31m]"
+DUT_RED="\033[1;31m"
 
 log() { # pass to me the phrase to be logged only as a string
   printf "${DUT_GRN}[${DUT_CYN}$(basename "$0")${DUT_YLW} log${DUT_GRN}]${DUT_RST}: $1 \n"
@@ -43,7 +43,8 @@ else
       while [ $DUT_NEXT_LEVEL -le $DUT_HIGHEST_LEVEL ]
         do # run the script:
           log "Running update level: $DUT_NEXT_LEVEL"
-          ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh
+          $DUT_LEVEL_MD5=$(md5sum ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh|awk '{print $1}')
+          ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh $DUT_LEVEL_MD5
           setCurrentLevel $DUT_NEXT_LEVEL # record that we (at least tried) applied the update ...
           DUT_NEXT_LEVEL=$((DUT_NEXT_LEVEL+=1)) # postfix and run again ...
       done
