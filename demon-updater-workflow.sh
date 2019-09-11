@@ -27,7 +27,6 @@ else
   log "Current version: $DUT_CURRENT_LEVEL"
   log "Highest level available: $DUT_HIGHEST_LEVEL"
   DUT_NEXT_LEVEL=$((DUT_CURRENT_LEVEL+=1))
-  log "Upgrading to: $DUT_NEXT_LEVEL"
   while [ $DUT_NEXT_LEVEL -le $DUT_HIGHEST_LEVEL ]
     do # run the script:
       log "Running update level: $DUT_NEXT_LEVEL"
