@@ -8,9 +8,12 @@ DUT_RST="\033[0m"
 DUT_CYN="\033[1;36m"
 DUT_YLW="\033[1;33m"
 DUT_RED="\033[1;31m"
+DUT_SCRIPT_CHECKSUM=$(md5sum $(basename "$0"))
+
 if [[ "$1" != "$DUT_SCRIPT_CHECKSUM" ]] # ensure this file is not called alone, ity must be called with it's own checksum
   then
     printf "\n${DUT_RED}[$(basename "$0") ERROR]: This script should not be called directly.\n\tPlease use the \"demon-updater.sh\" command.${DUT_RST}\n\n" 1>&2
+    printf "\n${DUT_RED}RECIEVED: $1, but I am $DUT_SCRIPT_CHECKSUM${DUT_RST}\n"
     exit 57
 fi
 log() {
