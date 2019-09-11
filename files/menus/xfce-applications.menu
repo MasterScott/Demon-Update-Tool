@@ -1,0 +1,333 @@
+<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
+  "http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">
+
+<Menu>
+    <Name>Xfce</Name>
+
+    <DefaultAppDirs/>
+    <DefaultDirectoryDirs/>
+    <DefaultMergeDirs/>
+
+    <Include>
+        <Category>X-Xfce-Toplevel</Category>
+    </Include>
+
+    <Layout>
+        <Filename>xfce4-run.desktop</Filename>
+        <Separator/>
+        <Filename>exo-terminal-emulator.desktop</Filename>
+        <Filename>exo-file-manager.desktop</Filename>
+        <Filename>exo-mail-reader.desktop</Filename>
+        <Filename>exo-web-browser.desktop</Filename>
+        <Separator/>
+        <Menuname>Settings</Menuname>
+        <Separator/>
+        <Merge type="all"/>
+        <Separator/>
+        <Filename>xfce4-about.desktop</Filename>
+        <Filename>xfce4-session-logout.desktop</Filename>
+    </Layout>
+
+    <Menu>
+        <Name>Settings</Name>
+        <Directory>xfce-settings.directory</Directory>
+        <Include>
+            <Category>Settings</Category>
+        </Include>
+
+        <Layout>
+            <Filename>xfce-settings-manager.desktop</Filename>
+            <Separator/>
+            <Merge type="all"/>
+        </Layout>
+
+        <Menu>
+            <Name>Screensavers</Name>
+            <Directory>xfce-screensavers.directory</Directory>
+            <Include>
+                <Category>Screensaver</Category>
+            </Include>
+        </Menu>
+    </Menu>
+
+    <Menu>
+        <Name>Accessories</Name>
+        <Directory>xfce-accessories.directory</Directory>
+        <Include>
+            <Or>
+                <Category>Accessibility</Category>
+                <Category>Core</Category>
+                <Category>Legacy</Category>
+                <Category>Utility</Category>
+            </Or>
+        </Include>
+        <Exclude>
+            <Or>
+                <Filename>exo-file-manager.desktop</Filename>
+                <Filename>exo-terminal-emulator.desktop</Filename>
+                <Filename>xfce4-about.desktop</Filename>
+                <Filename>xfce4-run.desktop</Filename>
+            </Or>
+        </Exclude>
+    </Menu>
+
+    <Menu>
+        <Name>Developer</Name>
+        <Directory>xfce-development.directory</Directory>
+        <Include>
+            <Category>Development</Category>
+        </Include>
+    </Menu>
+
+    <Menu>
+        <Name>Education</Name>
+        <Directory>xfce-education.directory</Directory>
+        <Include>
+            <Category>Education</Category>
+        </Include>
+    </Menu>
+
+    <Menu>
+        <Name>Games</Name>
+        <Directory>xfce-games.directory</Directory>
+        <Include>
+            <Category>Game</Category>
+        </Include>
+    </Menu>
+
+    <Menu>
+        <Name>Graphics</Name>
+        <Directory>xfce-graphics.directory</Directory>
+        <Include>
+            <Category>Graphics</Category>
+        </Include>
+    </Menu>
+
+    <Menu>
+        <Name>Multimedia</Name>
+        <Directory>xfce-multimedia.directory</Directory>
+        <Include>
+            <Category>Audio</Category>
+            <Category>Video</Category>
+            <Category>AudioVideo</Category>
+        </Include>
+    </Menu>
+
+    <Menu>
+        <Name>Network</Name>
+        <Directory>xfce-network.directory</Directory>
+        <Include>
+            <Category>Network</Category>
+        </Include>
+        <Exclude>
+            <Or>
+                <Filename>exo-mail-reader.desktop</Filename>
+                <Filename>exo-web-browser.desktop</Filename>
+            </Or>
+        </Exclude>
+    </Menu>
+
+    <Menu>
+        <Name>Office</Name>
+        <Directory>xfce-office.directory</Directory>
+        <Include>
+            <Category>Office</Category>
+        </Include>
+    </Menu>
+
+    <Menu>
+        <Name>System</Name>
+        <Directory>xfce-system.directory</Directory>
+        <Include>
+            <Or>
+                <Category>Emulator</Category>
+                <Category>System</Category>
+            </Or>
+        </Include>
+        <Exclude>
+            <Or>
+                <Filename>xfce4-session-logout.desktop</Filename>
+            </Or>
+        </Exclude>
+</Menu>
+	<Menu>
+		<Name>Demon Linux</Name>
+		<Directory>demonlinuxapps.directory</Directory>
+		<Include>
+			<Category>demonlinux</Category>
+		</Include>
+	</Menu>
+	<Menu>
+		<Name>Information Security</Name>
+		<Directory>infosec.directory</Directory>
+		<Menu>
+			<Name>Wifi Hacking</Name>
+			<Directory>wifiapps.directory</Directory>
+			<Include>
+				<Category>wifihacking</Category>
+			</Include>
+			<Menu>
+				<Name>Aircrack-NG Suite</Name>
+				<Directory>aircrack.directory</Directory>
+				<Include>
+					<Category>aircrack</Category>
+				</Include>
+			</Menu>
+
+		</Menu>
+		<Menu>
+			<Name>Network Tools</Name>
+			<Directory>networkapps.desktop</Directory>
+			<Include>
+				<Category>networkhacking</Category>
+			</Include>
+		</Menu>
+
+		<Menu>
+			<Name>Exploitation</Name>
+			<Directory>exploitation.directory</Directory>
+			<Include>
+				<Category>exploitation</Category>
+			</Include>
+			<Menu>
+				<Name>Metasploit Framework</Name>
+				<Directory>msf.directory</Directory>
+				<Include>
+					<Category>msf</Category>
+				</Include>
+			</Menu>
+		</Menu>
+
+		<Menu>
+			<Name>Enumeration</Name>
+			<Directory>enumeration.directory</Directory>
+			<Include>
+				<Category>enumeration</Category>
+			</Include>
+			<Menu>
+				<Name>Vulnerability Scan</Name>
+				<Directory>vulnerability.directory</Directory>
+				<Include>
+					<Category>vulnerability</Category>
+				</Include>
+			</Menu>
+			<Menu>
+				<Name>SMB Enumeration</Name>
+				<Directory>smbenum.directory</Directory>
+				<Include>
+					<Category>smbenum</Category>
+				</Include>
+			</Menu>
+		</Menu>
+
+		<Menu>
+			<Name>Social Engineering</Name>
+			<Directory>se.directory</Directory>
+			<Include>
+				<Category>se</Category>
+			</Include>
+		</Menu>
+
+		<Menu>
+			<Name>OSINT</Name>
+			<Directory>osint.directory</Directory>
+			<Include>
+				<Category>osint</Category>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Stealth</Name>
+			<Directory>stealth.directory</Directory>
+			<Include>
+				<Category>stealth</Category>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Blue Team</Name>
+			<Directory>blueteam.directory</Directory>
+			<Include>
+				<Category>blueteam</Category>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Digital Forensics</Name>
+			<Directory>forensics.directory</Directory>
+			<Include>
+				<Category>forensics</Category>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Physical Security</Name>
+			<Directory>physical.directory</Directory>
+			<Include>
+				<Category>physical</Category>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Brute Force</Name>
+			<Directory>bruteforce.directory</Directory>
+			<Include>
+				<Category>bruteforce</Category>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>WWW</Name>
+			<Directory>www.directory</Directory>
+			<Include>
+				<Category>www</Category>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Password Utilities</Name>
+			<Directory>passwd.directory</Directory>
+			<Include>
+				<Category>passwd</Category>
+			</Include>
+			<Menu>
+				<Name>Wordlist Utilities</Name>
+				<Directory>wordlist.directory</Directory>
+				<Include>
+					<Category>wordlist</Category>
+				</Include>
+			</Menu>
+			<Menu>
+				<Name>File Cracking Utilities</Name>
+				<Directory>filecracking.directory</Directory>
+				<Include>
+					<Category>filecracking</Category>
+				</Include>
+			</Menu>
+		</Menu>
+		<Menu>
+			<Name>Discovery</Name>
+			<Directory>discovery.directory</Directory>
+			<Include>
+				<Category>discovery</Category>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Protocol Analysis</Name>
+			<Directory>protocol.directory</Directory>
+			<Include>
+				<Category>protocol</Category>
+			</Include>
+		</Menu>
+    <Menu><!-- RF Menu for all non 802.* RF Apps: -->
+      <Name>RF Analysis</Name>
+      <Directory>rf.directory</Directory>
+      <Include>
+        <Category>rf</Category>
+      </Include>
+    </Menu>
+	</Menu>
+
+    <Menu>
+        <Name>Other</Name>
+        <Directory>xfce-other.directory</Directory>
+        <OnlyUnallocated/>
+        <Include>
+            <All/>
+        </Include>
+    </Menu>
+
+</Menu>
