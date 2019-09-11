@@ -16,7 +16,7 @@ updateVersion() { # pass to me the version to log the update
   echo $1 > /etc/demon/version
 }
 getCurrentLevel() {
-  return $(cat /etc/demon/version)
+  echo $(cat /etc/demon/version)
 }
 export -f log
 export -f updateVersion
@@ -39,4 +39,4 @@ else
       DUT_NEXT_LEVEL=$((DUT_NEXT_LEVEL+=1)) # postfix and run again ...
   done
 fi
-log "\nSystem now at version $getCurrentLevel. All updates are complete.\n"
+log "\nSystem now at version $(getCurrentLevel). All updates are complete.\n"
