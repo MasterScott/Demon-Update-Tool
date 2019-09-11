@@ -43,7 +43,7 @@ else
       while [ $DUT_NEXT_LEVEL -le $DUT_HIGHEST_LEVEL ]
         do # run the script:
           log "Running update level: $DUT_NEXT_LEVEL"
-          $DUT_LEVEL_MD5=$(md5sum ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh|awk '{print $1}')
+          DUT_LEVEL_MD5=$(md5sum ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh|awk '{print $1}')
           ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh $DUT_LEVEL_MD5
           setCurrentLevel $DUT_NEXT_LEVEL # record that we (at least tried) applied the update ...
           DUT_NEXT_LEVEL=$((DUT_NEXT_LEVEL+=1)) # postfix and run again ...
