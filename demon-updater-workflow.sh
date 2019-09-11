@@ -12,6 +12,7 @@ DUT_GRN="\033[1;32m"
 DUT_RST="\033[0m"
 DUT_CYN="\033[1;36m"
 DUT_YLW="\033[1;33m"
+DUT_RED="\033[1;31m]"
 
 log() { # pass to me the phrase to be logged only as a string
   printf "${DUT_GRN}[${DUT_CYN}$(basename "$0")${DUT_YLW} log${DUT_GRN}]${DUT_RST}: $1 \n"
@@ -35,7 +36,7 @@ else
   log "Current version: $DUT_CURRENT_LEVEL"
   log "Highest level available: $DUT_HIGHEST_LEVEL"
   DUT_NEXT_LEVEL=$((DUT_CURRENT_LEVEL+=1))
-  if [ $DUT_CURRENT_LEVEL -lt $DUT_HIGHEST_LEVEL ]
+  if [[ $DUT_CURRENT_LEVEL -lt $DUT_HIGHEST_LEVEL ]]
     then # System requires an update!
       log "Demon requires update."
       while [ $DUT_NEXT_LEVEL -le $DUT_HIGHEST_LEVEL ]
