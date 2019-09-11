@@ -34,6 +34,7 @@ if [[ "$1" != "$DUT_SCRIPT_CHECKSUM" ]] # ensure this file is not called alone, 
     exit 1337
 else
   log "Initializing update tool"
+  printf "DO NOT EXIST getCurrentLevel c: $(getCurrentLevel)\n"
   log "Current version: $DUT_CURRENT_LEVEL"
   log "Highest level available: $DUT_HIGHEST_LEVEL"
   if [[ $DUT_CURRENT_LEVEL -lt $DUT_HIGHEST_LEVEL ]]
@@ -45,14 +46,14 @@ else
           log "Running update level: $DUT_NEXT_LEVEL"
           DUT_LEVEL_MD5=$(md5sum ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh|awk '{print $1}')
           ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh $DUT_LEVEL_MD5
-          printf "DO NOT EXIST getCurrentLevel a: $(getCurrentLevel)"
+          printf "DO NOT EXIST getCurrentLevel a: $(getCurrentLevel)\n"
           if [[ $? -eq 0 ]]
             then
               log "Updating /etc/demon/version file, because \$\? = $?"
               setCurrentLevel $DUT_NEXT_LEVEL # record that we (at least tried) applied the update ...
               DUT_NEXT_LEVEL=$((DUT_NEXT_LEVEL+=1)) # postfix and run again ...
           else
-            printf "getCurrentLevel b: $(getCurrentLevel)"
+            printf "getCurrentLevel b: $(getCurrentLevel)\n"
             printf "${DUT_RED} SOMETHING WENT WRONG WITH ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh ${DUT_RST}\n\n" 1>&2
             exit 57
           fi
