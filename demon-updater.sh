@@ -38,8 +38,9 @@ else
 fi
 
 log "Copying binary to \$PATH"
-chmod +x $REPO_DIR/*.sh # change permissions for execute
 cp $REPO_DIR/*.sh /usr/local/sbin # clobber the old files if necessary
+chmod +x /usr/local/sbin/demon-updater-workflow.sh
+chmod +x /usr/local/sbin/demon-updater.sh
 log "Tool up to date, proceed with updates"
 
 ### Calling updater-workflow script
