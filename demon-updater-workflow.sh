@@ -3,12 +3,14 @@
 # 2019 - WeakNet Labs - Douglas Berdeaux, DemonLinux.com ^vv^
 #
 DUT_SCRIPT=/usr/local/sbin/$(basename "$0") # the name of this script
+DUT_LEVELS=/var/demon/updater/code/Demon-Update-Tool/update_scripts/
 DUT_SCRIPT_CHECKSUM=$(md5sum $DUT_SCRIPT|awk '{print $1}') # This will generate an md5
 source ~/.bashrc
 DUT_CURRENT_LEVEL=$2 # current version from /etc/demon/version
+DUT_HIGHEST_LEVEL=$(ls $DUT_LEVELS|sort -u|tail -n 1|awk -F. '{print $1}')
 
 log() { # pass to me the phrase to be logged only as a string
-  printf "[log]: $1 \n"
+  printf "\033[1;32m[\033[1;33mlog\033[1;32m]\033[0m: $1 \n"
 }
 updateVersion() { # pass to me the version to log the update
   echo $1 > /etc/demon/version
@@ -18,12 +20,12 @@ export -f updateVersion
 
 if [[ "$1" != "$DUT_SCRIPT_CHECKSUM" ]] # ensure this file is not called alone, ity must be called with it's own checksum
   then
-    log "Got SCRIPT_CHECKSUM: $DUT_SCRIPT_CHECKSUM"
     printf "\n[ERROR]: This script should not be called directly.\n\tPlease use the \"demon-updater.sh\" command\n\n"
     exit 1337
 else
   log "Initializing update tool"
   log "Current version: $DUT_CURRENT_LEVEL"
+  log "Highest level available: $DUT_HIGHEST_LEVEL"
   DUT_NEXT_LEVEL=$((DUT_CURRENT_LEVEL+=1))
   log "Upgrading to: $DUT_NEXT_LEVEL"
   # 1. get current version
