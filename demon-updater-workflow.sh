@@ -35,8 +35,8 @@ if [[ "$1" != "$DUT_SCRIPT_CHECKSUM" ]] # ensure this file is not called alone, 
     printf "I got: $1, but I am $DUT_SCRIPT_CHECKSUM" 1>&2
     exit 1337
 else
-  log "Initializing update tool"
-  log "Current version: $(getCurrentLevel)"
+  #log "Initializing update tool"
+  #log "Current version: $(getCurrentLevel)"
   log "Highest level available: $DUT_HIGHEST_LEVEL"
   if [[ $(getCurrentLevel) -lt $DUT_HIGHEST_LEVEL ]]
     then # System requires an update!
@@ -50,7 +50,7 @@ else
           ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh $DUT_LEVEL_MD5
           if [[ $? -eq 0 ]]
             then
-              log "Updating /etc/demon/version file, because \$\? = $?"
+              #log "Updating /etc/demon/version file, because \$\? = $?"
               setCurrentLevel $DUT_NEXT_LEVEL # record that we (at least tried) applied the update ...
               DUT_NEXT_LEVEL=$((DUT_NEXT_LEVEL+=1)) # postfix and run again ...
           else
