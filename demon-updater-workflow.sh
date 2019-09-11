@@ -35,3 +35,4 @@ else
       DUT_NEXT_LEVEL=$((DUT_NEXT_LEVEL+=1)) # postfix and run again ...
   done
 fi
+log "System now at version $DUT_NEXT_LEVEL. All updates are complete.\n"
