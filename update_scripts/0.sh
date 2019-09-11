@@ -8,7 +8,7 @@ DUT_RST="\033[0m"
 DUT_CYN="\033[1;36m"
 DUT_YLW="\033[1;33m"
 DUT_RED="\033[1;31m"
-DUT_SCRIPT_CHECKSUM=$(md5sum $(basename "$0"))
+DUT_SCRIPT_CHECKSUM=$(md5sum $(basename "$0")|awk '{print $1}')
 
 if [[ "$1" != "$DUT_SCRIPT_CHECKSUM" ]] # ensure this file is not called alone, ity must be called with it's own checksum
   then
