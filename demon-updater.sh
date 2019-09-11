@@ -24,7 +24,7 @@ if [[ ! -d "/etc/demon/" ]]
   then
     log "Creating /etc/demon local directory structure"
     mkdir -p /etc/demon
-    echo 0 > /etc/demon/version # init as version 0
+    echo $DUT_CURRENT_LEVEL > /etc/demon/version # init as version 0
 fi
 if [[ ! -d "$DUT_CODE_DIR" ]]
   then
