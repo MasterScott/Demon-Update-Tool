@@ -2,10 +2,10 @@
 # This is the workflow of the updater It will call scripts based on the version of Demon Linux
 # 2019 - WeakNet Labs - Douglas Berdeaux, DemonLinux.com ^vv^
 #
+source ~/.bashrc
 DUT_SCRIPT=/usr/local/sbin/$(basename "$0") # the name of this script
 DUT_LEVELS=/var/demon/updater/code/Demon-Update-Tool/update_scripts/
 DUT_SCRIPT_CHECKSUM=$(md5sum $DUT_SCRIPT|awk '{print $1}') # This will generate an md5
-source ~/.bashrc
 DUT_CURRENT_LEVEL=$2 # current version from /etc/demon/version
 DUT_HIGHEST_LEVEL=$(ls $DUT_LEVELS|sort -u|tail -n 1|awk -F. '{print $1}')
 
@@ -31,7 +31,7 @@ else
   while [ $DUT_NEXT_LEVEL -le $DUT_HIGHEST_LEVEL ]
     do # run the script:
       log "Running update level: $DUT_NEXT_LEVEL"
-      /var/demon/updater/code/Demon-Update-Tool/update_scripts/${DUT_NEXT_LEVEL}.sh
+      ${DUT_LEVELS}/${DUT_NEXT_LEVEL}.sh
       updateVersion $DUT_NEXT_LEVEL # record that we (at least tried) applied the update ...
       DUT_NEXT_LEVEL=$((DUT_NEXT_LEVEL+=1)) # postfix and run again ...
   done
