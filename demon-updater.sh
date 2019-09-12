@@ -10,7 +10,7 @@ DUT_REPO_DIR=$DUT_CODE_DIR/Demon-Update-Tool
 DUT_GIT_REPO_URL=https://github.com/weaknetlabs/Demon-Update-Tool
 DUT_CURRENT_LEVEL=$(cat /etc/demon/version||echo -1)
 
-printf "\033[1;31m\n 😈 Demon Linux Update Tool\n 2019 WeakNet Labs, Douglas Berdeaux\n\n\033[0m"
+printf "\033[1;31m\n 😈 Demon Linux Update Tool\n 2019 WeakNet Labs, https://demonlinux.com\n\n\033[0m"
 source ~/.bashrc
 log() {
   printf "\033[1;32m[\033[1;36m$(basename "$0")\033[1;33m log\033[1;32m]\033[0m: $1 \n"
