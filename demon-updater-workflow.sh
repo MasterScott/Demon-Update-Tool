@@ -66,5 +66,6 @@ else
       notify $DUT_NOTIFY_APP "The Demon is now up to date."
   else
     log "${DUT_GRN}System is already up to date. Version $(getCurrentLevel)${DUT_RST}"
+    notify $DUT_NOTIFY_APP "The Demon is up to date."
   fi # done
 fi
