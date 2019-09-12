@@ -18,16 +18,20 @@ export DUT_NOTIFY_APP="Demon Update Tool Notification"
 log () { # pass to me the phrase to be logged only as a string
   printf "${DUT_GRN}[${DUT_CYN}$(basename "$0")${DUT_YLW} log${DUT_GRN}]${DUT_RST}: $1 \n"
 }
+
 setCurrentLevel () { # pass to me the version to log the update
   log "Updating $(getCurrentLevel) to level $1 in /etc/demon/version"
   echo $1 > /etc/demon/version
 }
+
 notify () {
   notify-send "$1" "$2"
 }
+
 getCurrentLevel () {
   echo $(cat /etc/demon/version)
 }
+
 export -f log
 export -f setCurrentLevel
 export -f getCurrentLevel
@@ -63,9 +67,9 @@ else
           fi
       done
       log "${DUT_GRN}System at version $(getCurrentLevel). All updates are complete.${DUT_RST}"
-      notify $DUT_NOTIFY_APP "The Demon is now up to date."
-  else
+      notify "$DUT_NOTIFY_APP" "The Demon is now up to date."
+    else
     log "${DUT_GRN}System is already up to date. Version $(getCurrentLevel)${DUT_RST}"
-    notify $DUT_NOTIFY_APP "The Demon is up to date."
+    notify "$DUT_NOTIFY_APP" "The Demon is up to date."
   fi # done
 fi
