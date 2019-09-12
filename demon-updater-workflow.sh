@@ -14,6 +14,7 @@ export DUT_CYN="\033[1;36m"
 export DUT_YLW="\033[1;33m"
 export DUT_RED="\033[1;31m"
 export DUT_NOTIFY_APP="Demon Update Tool Notification"
+export DUT_NOTIFY_ICON="--icon=/usr/share/demon/images/icons/updater.png"
 
 log () { # pass to me the phrase to be logged only as a string
   printf "${DUT_GRN}[${DUT_CYN}$(basename "$0")${DUT_YLW} log${DUT_GRN}]${DUT_RST}: $1 \n"
@@ -25,7 +26,7 @@ setCurrentLevel () { # pass to me the version to log the update
 }
 
 notify () {
-  notify-send "$1" "$2"
+  notify-send "$1" "$2" $DUT_NOTIFY_ICON
 }
 
 getCurrentLevel () {
