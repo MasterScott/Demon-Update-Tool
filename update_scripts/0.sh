@@ -36,7 +36,7 @@ if [ ! -d ${DEMON_BACKUPS}/menus ] # backups directory that I forgot to make in 
   then
       mkdir -p /usr/share/demon/backups/menus
 fi
-cp ${DUT_FILES}/desktop/rf.directory /usr/share/desktop-directories/
+cp ${DUT_FILES}/directories/rf.directory /usr/share/desktop-directories/
 log "Backing up XFCE4 Menu to ${DEMON_BACKUPS}/menus/xfce-applications.menu-$(date +%s)"
 cp /etc/xdg/menus/xfce-applications.menu ${DEMON_BACKUPS}/menus/xfce-applications.menu-$(date +%s)
 cp ${DUT_FILES}/menus/xfce-applications.menu /etc/xdg/menus/
